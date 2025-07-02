@@ -1,11 +1,10 @@
-const connectDB = require("./config/database.js");
+import 
 const app = require("./app.js");
 
 start = async () => {
   await connectDB()
   .then((res) => {
     console.log("Sucesso na chamada de conexão de banco de dados.")
-    console.log("Sucesso: ", res)
     return res
   })
   .catch((error) => {
