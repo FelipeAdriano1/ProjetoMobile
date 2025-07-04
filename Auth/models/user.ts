@@ -13,6 +13,14 @@ async function createUser(user: userData) {
             updateAt: createDate
         }
 
+        await findUserByEmail(user.email)
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((error) => {
+                console.log("Erro")
+            })
+
         const insert = await db.collection('finance-auth').insertOne(userTime)
         return insert
     }
