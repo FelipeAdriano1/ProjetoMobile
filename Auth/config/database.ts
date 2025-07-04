@@ -12,7 +12,7 @@ async function connectDB() {
         let dbName = process.env.DB_NAME || 'finance-auth'
         try {
             client = new MongoClient(uri, {
-                timeoutMS: 5000
+                connectTimeoutMS: 5000
             })
 
             await client.connect()
@@ -39,4 +39,11 @@ async function disconnectDB() {
     }
 }
 
-export default connectDB; disconnectDB;
+function returnDB() {
+    if (!db) {
+        console.log('[DATABASE] - Banco de dados não conectado. Conecte primeiro, depois chame este método.')
+    }
+    return db
+}
+
+export default connectDB; disconnectDB; returnDB;
