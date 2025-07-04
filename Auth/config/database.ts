@@ -29,3 +29,14 @@ async function connectDB() {
 
     return db
 }
+
+async function disconnectDB() {
+    if (client) {
+        process.on('SIGINT', () => {
+            client.close()
+            process.exit(0)
+        })
+    }
+}
+
+export default connectDB; disconnectDB;
